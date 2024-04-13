@@ -1,7 +1,7 @@
 import React from "react";
 import Filters from "./filters";
-import { Card } from "./card";
-import ListCards from "./list-cards";
+import { Card } from "../card-product/card";
+import ListCards from "../card-product/list-cards";
 const IndexPage = () => {
   const cardInfo = {
     title: "Neverita",
