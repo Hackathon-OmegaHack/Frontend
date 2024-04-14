@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
 const options = {
@@ -10,27 +11,44 @@ const options = {
 };
 
 const ChartCardRealTime = () => {
+  const [data, setData] = useState<{
+    labels: string[];
+    values: number[];
+  }>({
+    labels: [],
+    values: [],
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setData((prev) => ({
+        labels: [...prev.labels, new Date().toLocaleTimeString()],
+        values: [...prev.values, Math.floor(Math.random() * 100)],
+      }));
+      if (data.labels.length === 5) {
+        setData((prev) => {
+          prev.labels.unshift();
+          prev.values.unshift();
+          return prev;
+        });
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Line
       options={options}
       data={{
         yLabels: ["Consumo en watts"],
         xLabels: ["Hora"],
-        labels: [
-          "01:00AM",
-          "01:01AM",
-          "01:02AM",
-          "01:03AM",
-          "01:04AM",
-          "01:05AM",
-          "01:06AM",
-          "01:07AM",
-        ],
+        labels: data.labels,
         datasets: [
           {
             label: "Costo energético vs tiempo",
             backgroundColor: "#FF812D",
-            data: [0, 10, 50, 20, 20, 100, 87, 300],
+            data: data.values,
             borderColor: "#FF812D",
             tension: 0.1,
           },

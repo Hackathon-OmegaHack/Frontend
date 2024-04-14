@@ -12,7 +12,7 @@ interface Props {
 
 export const Card = ({ cardInfo }: Props) => {
   const { title, watts } = cardInfo;
-  const moneySpent = watts * 0.375;
+  const moneySpent = Math.round(watts * 0.375 * 100) / 100;
   // const { isOpen, closeModal, openModal } = useModal();
   return (
     <>
@@ -23,7 +23,7 @@ export const Card = ({ cardInfo }: Props) => {
           <h3 className="text-[1.5rem]">Gasto</h3>
           <p>{moneySpent}</p>
         </div>
-        <SpentDifference actualValue={moneySpent} lastValue={400} />
+        <SpentDifference actualValue={moneySpent} lastValue={30} />
         <p className="text-sm">Consumo: 1.440 Watts</p>
         <button className="flex items-center text-sm gap-2 px-2 py-1 bg-secondary text-white rounded-md">
           <DocumentMagnifyingGlassIcon className="h-5 w-5" />

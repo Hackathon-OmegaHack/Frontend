@@ -2,7 +2,7 @@ export const getCardsInfo = () => [
   {
     id: 1,
     watts: 30,
-    title: "Nevera Samsung",
+    title: "Nevera",
   },
   {
     id: 1,

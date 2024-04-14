@@ -6,25 +6,27 @@ interface Props {
 }
 const SpentDifference = ({ actualValue, lastValue }: Props) => {
   const total = actualValue - lastValue;
-  var spanInfo = (
-    <span className="text-sm p-1 px-3 rounded-md bg-slate-400 text-white">
-      No hubo diferencia
-    </span>
-  );
+  console.log("total", total < 0);
   if (total > 0)
-    spanInfo = (
+    return (
       <span className="text-sm p-1 px-3 rounded-md bg-red-400 text-red-800">
-        Aumento del ${Math.abs(total)} COP
+        Consumo aumentó ${Math.abs(total)} COP
       </span>
     );
-  if (total > 0)
-    spanInfo = (
-      <span className="text-sm p-1 px-3 rounded-md bg-red-400 text-red-800">
-        Disminución del ${Math.abs(total)} COP
+  if (total < 0)
+    return (
+      <span className="text-sm p-1 px-3 rounded-md bg-green-400 text-green-800">
+        Consumo disminuyó ${Math.abs(total)} COP
       </span>
     );
 
-  return <>{spanInfo}</>;
+  return (
+    <>
+      <span className="text-sm p-1 px-3 rounded-md bg-slate-400 text-white">
+        No hubo diferencia
+      </span>
+    </>
+  );
 };
 
 export default SpentDifference;

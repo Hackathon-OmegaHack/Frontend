@@ -1,13 +1,17 @@
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import ChartCardRealTime from "./chart-card";
 
-const CardRealTime = () => {
+interface Props {
+  name: string;
+  cost: number;
+}
+const CardRealTime = ({ name, cost }: Props) => {
   return (
     <article className="rounded-md shadow-lg text-secondary">
       <div className="px-8 pt-12 pb-2">
         <div className="flex flex-col gap-0">
-          <strong>Nevera</strong>
-          <p className="font-semibold text-primary text-4xl">$300</p>
+          <strong>{name}</strong>
+          <p className="font-semibold text-primary text-4xl">${cost} COP</p>
           <span className="text-sm">Último minuto</span>
         </div>
         <span className="flex gap-1 items-center font-medium text-[.6rem] my-2 bg-secondary/20 rounded-md p-2">
