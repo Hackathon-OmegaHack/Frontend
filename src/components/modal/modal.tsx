@@ -24,7 +24,12 @@ const Modal = ({ children, closeModal, title, className = "" }: ModalProps) => {
     <>
       <div className="w-full h-full fixed top-0 left-0 z-10 bg-black/30"></div>
       <article
-        className={`bg-white p-4 rounded-md fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 max-w-2xl ${className}`}>
+        className={`bg-white p-4 rounded-md fixed z-50  w-4/5 max-w-xl ${className}`}
+        style={{
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}>
         <div className="flex justify-between">
           {title}
           <button
@@ -33,7 +38,6 @@ const Modal = ({ children, closeModal, title, className = "" }: ModalProps) => {
             <XMarkIcon className="w-5 h-5" />
           </button>
         </div>
-
         <div className="mt-2">{children}</div>
       </article>
     </>

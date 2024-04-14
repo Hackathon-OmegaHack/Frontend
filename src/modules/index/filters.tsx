@@ -5,11 +5,14 @@ const Filters = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(null);
   return (
-    <div className="flex gap-2 items-start justify-start w-full">
-      <div className="form-control">
-        <label className="label flex flex-col items-start text-lg">
-          Fecha Inicial:
+    <div className="flex gap-2 items-center justify-center w-full flex-wrap">
+      <form className="mt-8 flex gap-4">
+        <label className="relative">
+          <span className="inline-block absolute left-2 -top-2 px-2 text-sm bg-white z-[2] text-secondary">
+            Fecha Inicial
+          </span>
           <DatePicker
+            className="input input-primary cursor-pointer input-bordered w-full text-secondary font-medium text-sm"
             selected={startDate}
             onChange={(date) => {
               setStartDate(date);
@@ -17,19 +20,22 @@ const Filters = () => {
             wrapperClassName="cursor-pointer"
           />
         </label>
-      </div>
-      <div className="form-control">
-        <label className="label flex flex-col items-start text-lg">
-          Fecha Final:
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => {
-              setStartDate(date);
-            }}
-            wrapperClassName="cursor-pointer"
-          />
+        <label className="relative">
+          <span className="inline-block absolute left-2 -top-2 px-2 text-sm bg-white z-[2] text-secondary">
+            Fecha Final
+          </span>
+          <div>
+            <DatePicker
+              className="input input-primary cursor-pointer input-bordered w-full text-secondary font-medium text-sm"
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date);
+              }}
+              wrapperClassName="cursor-pointer"
+            />
+          </div>
         </label>
-      </div>
+      </form>
     </div>
   );
 };

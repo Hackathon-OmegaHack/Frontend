@@ -7,3 +7,11 @@
     text-wrap: balance;
   }
 }
+
+body {
+  color: #303030;
+}
+
+.debug {
+  @apply border border-red-600;
+}

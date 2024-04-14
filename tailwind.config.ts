@@ -16,6 +16,7 @@ const config: Config = {
       },
       colors: {
         "primary-1": "#FF812D",
+        primary: "#FF812D",
         "primary-2": "#D5752D",
         secondary: "#59595B",
         white: "#FFF",
@@ -23,5 +24,15 @@ const config: Config = {
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#FF812D",
+          secondary: "#59595B",
+        },
+      },
+    ],
+  },
 };
 export default config;

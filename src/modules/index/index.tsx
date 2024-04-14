@@ -1,24 +1,25 @@
 import React from "react";
 import Filters from "./filters";
-import { Card } from "../card-product/card";
 import ListCards from "../card-product/list-cards";
-const IndexPage = () => {
-  const cardInfo = {
-    title: "Neverita",
-    imgUrl: "./assets/refrigerator.png",
-    watts: 50,
-  };
+import BarChart from "./bar-chart";
+import InfoUser from "./info-user";
+import Report from "./report";
+import MainContent from "./main-content";
+import IndexTitle from "./index-title";
+import { getCardsInfo } from "@/services/cardsInfo";
 
-  const products = new Array(5).fill({
-    id: 1,
-    title: "Neverita",
-    imgUrl: "./assets/refrigerator.png",
-    watts: 50,
-  });
+const IndexPage = () => {
+  const products = getCardsInfo();
   return (
     <>
-      <Filters />
-      <ListCards products={products} />
+      <div className="w-3/4 mx-auto flex flex-col gap-8 mt-8">
+        <IndexTitle
+          imgUrl=""
+          title="Consumo del día"
+          date="14 de Abril de 2024 "
+        />
+        <ListCards products={products} />
+      </div>
     </>
   );
 };

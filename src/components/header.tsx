@@ -1,67 +1,59 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { Bars4Icon, UserCircleIcon } from "@heroicons/react/24/outline";
+
+const listItems = [
+  {
+    name: "Inicio",
+    path: "/",
+  },
+  {
+    name: "Estadistica",
+    path: "/statistics",
+  },
+  {
+    name: "Tiempo real",
+    path: "/real-time",
+  },
+];
+
 const Header = () => {
   const router = useRouter();
   const path = router.pathname;
   return (
-    <div
-      className="navbar bg-primary-1 fixed top-0 z-10"
+    <nav
       style={{
-        boxShadow: "4.2px 8.3px 8.3px hsl(0deg 0% 0% / 0.37);",
-      }}>
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+        boxShadow: "0 2px 4px 0 rgba(0,0,0,0.1)",
+      }}
+      className="w-full py-4 bg-white text-secondary text-sm">
+      <div className="w-[90%] lg:w-3/4 mx-auto flex items-center justify-between">
+        <div className="ml-12 md:ml-0 flex items-center gap-4">
+          <button>
+            <Bars4Icon className="w-12 h-12 md:hidden" />
+          </button>
+          <a href="/">
+            <img src="/assets/celsia-logo-naranja.png" alt="logo" />
+          </a>
         </div>
-        <a className="btn btn-ghost text-xl text-white">Celsia</a>
-      </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className={`${path === "/" ? "text-white" : ""}`}>
-            <a>Inicio</a>
-          </li>
-          <li className={`${path === "/csv" ? "text-white" : ""}`}>
-            <a>CSV</a>
-          </li>
+        <ul className="hidden md:flex gap-6">
+          {listItems.map((item, index) => (
+            <Link
+              className={`font-semibold ${
+                path === item.path ? "text-primary" : "text-secondary"
+              } hover:text-primary transition-all`}
+              key={item.name}
+              href={item.path}>
+              {item.name}
+            </Link>
+          ))}
         </ul>
+        <button className="hidden md:flex gap-2 items-center hover:text-primary transition-all">
+          <UserCircleIcon className="w-6 h-6" />
+          Mi cuenta
+        </button>
       </div>
-      <div className="navbar-end"></div>
-    </div>
+    </nav>
   );
 };
 
