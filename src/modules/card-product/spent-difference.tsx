@@ -6,7 +6,11 @@ interface Props {
 }
 const SpentDifference = ({ actualValue, lastValue }: Props) => {
   const total = actualValue - lastValue;
-  var spanInfo = <span className="text-sm p-1 px-3 rounded-md bg-slate-400 text-">No hubo diferencia</span>;
+  var spanInfo = (
+    <span className="text-sm p-1 px-3 rounded-md bg-slate-400 text-white">
+      No hubo diferencia
+    </span>
+  );
   if (total > 0)
     spanInfo = (
       <span className="text-sm p-1 px-3 rounded-md bg-red-400 text-red-800">
@@ -15,7 +19,9 @@ const SpentDifference = ({ actualValue, lastValue }: Props) => {
     );
   if (total > 0)
     spanInfo = (
-      <span className="text-sm p-1 px-3 rounded-md bg-red-400 text-red-800">Disminución del ${Math.abs(total)} COP</span>
+      <span className="text-sm p-1 px-3 rounded-md bg-red-400 text-red-800">
+        Disminución del ${Math.abs(total)} COP
+      </span>
     );
 
   return <>{spanInfo}</>;

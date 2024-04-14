@@ -35,10 +35,11 @@ const CSVModule = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      console.log(response);
+      console.log(response.data);
+      setCsvState(states.LOADED);
     } catch (error) {
       console.error(error);
+      setCsvState(states.LOADED);
     }
   };
 
