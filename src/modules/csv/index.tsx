@@ -3,7 +3,15 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { FieldValues, SubmitHandler } from "react-hook-form";
+import { json2csv } from "json-2-csv";
 
+function download(fileData: string, fileName: string) {
+  const link = document.createElement("a");
+  link.download = fileName;
+  const blob = new Blob([fileData], { type: "text/csv" });
+  link.href = window.URL.createObjectURL(blob);
+  link.click();
+}
 const CSVModule = () => {
   const states = {
     NOT_LOADED: "NOT_LOADED",
@@ -35,6 +43,10 @@ const CSVModule = () => {
           "Content-Type": "multipart/form-data",
         },
       });
+      const file1 = json2csv(response.data["csv_predicciones_watts"]);
+      const file2 = json2csv(response.data["csv_predicciones_encendidos"]);
+      download(file1,"csv_predicciones_watts.csv")
+      download(file2,"csv_predicciones_encendidos.csv")
       console.log(response.data);
       setCsvState(states.LOADED);
     } catch (error) {
@@ -50,7 +62,8 @@ const CSVModule = () => {
         <p>Puedes subir un archivo CSV </p>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="inline-flex flex-col items-center justify-center ">
+          className="inline-flex flex-col items-center justify-center "
+        >
           <input
             type="file"
             multiple={false}
@@ -76,14 +89,7 @@ const CSVModule = () => {
         )}
       </section>
       <hr className="border-1 border-primary w-5/6 rounded-full" />
-      <section className="w-full flex flex-col items-center justify-center my-5 px-8">
-        <h2 className="font-bold text-lg mb-3">Descargar archivo CSV</h2>
-        <p>
-          Puedes descargar el archivo CSV asociado a los datos que se usaron
-          para la construcción del aplicativo.
-        </p>
-        <button className="btn btn-primary px-6 mt-6">Descargar Archivo</button>
-      </section>
+      
     </main>
   );
 };
