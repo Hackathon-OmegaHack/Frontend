@@ -89,14 +89,7 @@ const CSVModule = () => {
         )}
       </section>
       <hr className="border-1 border-primary w-5/6 rounded-full" />
-      <section className="w-full flex flex-col items-center justify-center my-5 px-8">
-        <h2 className="font-bold text-lg mb-3">Descargar archivo CSV</h2>
-        <p>
-          Puedes descargar el archivo CSV asociado a los datos que se usaron
-          para la construcción del aplicativo.
-        </p>
-        <button className="btn btn-primary px-6 mt-6">Descargar Archivo</button>
-      </section>
+      
     </main>
   );
 };
