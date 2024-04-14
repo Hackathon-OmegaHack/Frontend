@@ -32,9 +32,9 @@ const Header = () => {
           <button>
             <Bars4Icon className="w-12 h-12 md:hidden" />
           </button>
-          <a href="/">
+          <Link href="/">
             <img src="/assets/celsia-logo-naranja.png" alt="logo" />
-          </a>
+          </Link>
         </div>
         <ul className="hidden md:flex gap-6">
           {listItems.map((item, index) => (
