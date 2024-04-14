@@ -21,18 +21,19 @@ const ChartCardRealTime = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setData((prev) => ({
-        labels: [...prev.labels, new Date().toLocaleTimeString()],
-        values: [...prev.values, Math.floor(Math.random() * 100)],
-      }));
-      if (data.labels.length === 5) {
-        setData((prev) => {
-          prev.labels.unshift();
-          prev.values.unshift();
-          return prev;
-        });
-      }
-    }, 3000);
+      setData((prev) => {
+        const newLabels = [...prev.labels, new Date().toLocaleTimeString()];
+        const newValues = [...prev.values, Math.floor(Math.random() * 100)];
+        // Mantener solo los últimos 5 valores
+        if (newLabels.length > 5) {
+          newLabels.shift();
+          newValues.shift();
+        }
+        console.log(newLabels, newValues);
+
+        return { labels: newLabels, values: newValues };
+      });
+    }, 60000); // Cambio cada minuto
 
     return () => clearInterval(interval);
   }, []);
