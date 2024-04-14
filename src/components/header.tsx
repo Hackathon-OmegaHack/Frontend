@@ -16,6 +16,10 @@ const listItems = [
     name: "Tiempo real",
     path: "/real-time",
   },
+  {
+    name: "CSV",
+    path: "/csv",
+  },
 ];
 
 const Header = () => {
